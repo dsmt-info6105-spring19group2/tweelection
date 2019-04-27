@@ -1,4 +1,4 @@
-from flaskblog import app, db
+from flaskblog import application, db
 from flaskblog.models import tweets
 from flaskblog.process import create_plot, create_timeseries, create_graph_two, create_word_cloud, sentiment_classifier, create_pie
 from flask import render_template, url_for, flash, redirect, request
@@ -26,7 +26,7 @@ def Load_Data(file_name):
 
 
 # Fetch data from RDS database
-@app.route("/fetch_data", methods=['GET', 'POST'])
+@application.route("/fetch_data", methods=['GET', 'POST'])
 def fetch_data():
     from_date = urllib.parse.unquote(request.args['from_date'], encoding='utf-8', errors='replace')
     from_date = from_date + " 00:01"
@@ -47,8 +47,8 @@ def fetch_data():
 
 
 # Home page with date fields
-@app.route("/", methods=['GET', 'POST'])
-@app.route("/home", methods=['GET', 'POST'])
+@application.route("/", methods=['GET', 'POST'])
+@application.route("/home", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         from_date = datetime.strptime(request.form['from'],"%Y-%m-%d")
