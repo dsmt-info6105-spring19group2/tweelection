@@ -28,13 +28,15 @@ def Load_Data(file_name):
 # Fetch data from RDS database
 @app.route("/fetch_data", methods=['GET', 'POST'])
 def fetch_data():
+    print("------------------------in fetch data------------------------------")
     from_date = urllib.parse.unquote(request.args['from_date'], encoding='utf-8', errors='replace')
     from_date = from_date + " 00:01"
 
     to_date = urllib.parse.unquote(request.args['to_date'], encoding='utf-8', errors='replace')
     to_date = to_date + " 23:59"
+    print("------------------------before db query------------------------------")
     tweets_result = db.session.query(tweets).filter(tweets.timestamp>= from_date, tweets.timestamp<= to_date)
-
+    print("------------------------after db query------------------------------")
     df = pd.DataFrame([(d.id, d.timestamp, d.tweet_text, d.source, d.username, d.location, d.likes, d.party) for d in tweets_result], columns=['id', 'timestamp', 'tweet_text',  'source', 'username', 'location', 'likes', 'party'])
 
     classified_df = sentiment_classifier(df)
