@@ -46,7 +46,7 @@ def fetch_data():
     bar2 = create_graph_two(classified_df)
     #wordcloud = create_word_cloud(classified_df)
     pie = create_pie(df)
-    return render_template('tweets.html', title='Tweets display', plot = bar, plot1 = timeseries,plot2 = bar2, wordcloud = wordcloud, pie= pie)
+    return render_template('tweets.html', title='Tweets display', plot = bar, plot1 = timeseries,plot2 = bar2, pie= pie)
 
 
 # Home page with date fields
