@@ -38,7 +38,7 @@ def fetch_data():
     tweets_result = db.session.query(tweets).filter(tweets.timestamp>= from_date, tweets.timestamp<= to_date)
     print("------------------------after db query------------------------------")
     df = pd.DataFrame([(d.id, d.timestamp, d.tweet_text, d.source, d.username, d.location, d.likes, d.party) for d in tweets_result], columns=['id', 'timestamp', 'tweet_text',  'source', 'username', 'location', 'likes', 'party'])
-
+    print(df)
     classified_df = sentiment_classifier(df)
     print("------------------------Data Classified------------------------------")
     bar = create_plot(classified_df)
