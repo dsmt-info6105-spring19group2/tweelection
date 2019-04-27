@@ -50,7 +50,7 @@ def fetch_data():
 
 
 # Home page with date fields
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
