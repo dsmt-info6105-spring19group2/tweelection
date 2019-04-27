@@ -36,6 +36,7 @@ def fetch_data():
     to_date = to_date + " 23:59"
     print("------------------------before db query------------------------------")
     tweets_result = db.session.query(tweets).filter(tweets.timestamp>= from_date, tweets.timestamp<= to_date)
+    print(tweets_result)
     print("------------------------after db query------------------------------")
     df = pd.DataFrame([(d.id, d.timestamp, d.tweet_text, d.source, d.username, d.location, d.likes, d.party) for d in tweets_result], columns=['id', 'timestamp', 'tweet_text',  'source', 'username', 'location', 'likes', 'party'])
     print(df)
