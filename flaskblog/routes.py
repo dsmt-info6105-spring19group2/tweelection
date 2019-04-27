@@ -44,7 +44,7 @@ def fetch_data():
     bar = create_plot(classified_df)
     timeseries = create_timeseries(classified_df)
     bar2 = create_graph_two(classified_df)
-    wordcloud = create_word_cloud(classified_df)
+    #wordcloud = create_word_cloud(classified_df)
     pie = create_pie(df)
     return render_template('tweets.html', title='Tweets display', plot = bar, plot1 = timeseries,plot2 = bar2, wordcloud = wordcloud, pie= pie)
 
