@@ -38,6 +38,7 @@ def fetch_data():
     df = pd.DataFrame([(d.id, d.timestamp, d.tweet_text, d.source, d.username, d.location, d.likes, d.party) for d in tweets_result], columns=['id', 'timestamp', 'tweet_text',  'source', 'username', 'location', 'likes', 'party'])
 
     classified_df = sentiment_classifier(df)
+    print("------------------------Data Classified------------------------------")
     bar = create_plot(classified_df)
     timeseries = create_timeseries(classified_df)
     bar2 = create_graph_two(classified_df)
